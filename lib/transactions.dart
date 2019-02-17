@@ -4,8 +4,9 @@ import './pages/transaction.dart';
 
 class Transactions extends StatelessWidget {
   final List<String> transactions;
+  final Function deleteTransaction;
 
-  Transactions([this.transactions = const []]) {
+  Transactions(this.transactions, {this.deleteTransaction}) {
     print('[Transactions Widget] Constructor');
   }
 
@@ -20,12 +21,16 @@ class Transactions extends StatelessWidget {
             children: <Widget>[
               FlatButton(
                 child: Text('Details'),
-                onPressed: () => Navigator.push(
+                onPressed: () => Navigator.push<bool>(
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) => TransactionPage(),
                       ),
-                    ),
+                    ).then((bool value) {
+                      if (value) {
+                        deleteTransaction(index);
+                      }
+                    }),
               )
             ],
           )

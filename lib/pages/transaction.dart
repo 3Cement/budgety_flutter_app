@@ -8,11 +8,13 @@ class TransactionPage extends StatelessWidget {
         title: Text('Transaction details'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text('About transaction'),
           RaisedButton(
-            child: Text('Back to transactions'),
-            onPressed: () => Navigator.pop(context),
+            color: Theme.of(context).accentColor,
+            child: Text('DELETE'),
+            onPressed: () => Navigator.pop(context, true),
           )
         ],
       ),

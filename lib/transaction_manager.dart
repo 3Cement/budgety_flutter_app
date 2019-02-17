@@ -41,6 +41,12 @@ class _TransactionManagerState extends State<TransactionManager> {
     });
   }
 
+  void _deleteTransaction(int index) {
+    setState(() {
+      _transactions.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     print('[TransactionManager State] build()');
@@ -50,7 +56,7 @@ class _TransactionManagerState extends State<TransactionManager> {
           margin: EdgeInsets.all(10.0),
           child: TransactionControl(_addTransaction),
         ),
-        Expanded(child: Transactions(_transactions))
+        Expanded(child: Transactions(_transactions, deleteTransaction: _deleteTransaction))
       ],
     );
   }
