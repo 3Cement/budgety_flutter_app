@@ -20,26 +20,22 @@ class TransactionsAdminPage extends StatelessWidget {
               ListTile(
                 title: Text('All Transactions'),
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              TransactionsPage()));
+                  Navigator.pushReplacementNamed(context, '/');
                 },
               )
             ],
           ),
         ),
         appBar: AppBar(
-          title: Text('Manage Products'),
+          title: Text('Manage Transactions'),
           bottom: TabBar(tabs: <Widget>[
             Tab(
               icon: Icon(Icons.create),
-              text: 'Create Product',
+              text: 'Create Transaction',
             ),
             Tab(
               icon: Icon(Icons.list),
-              text: 'My Products',
+              text: 'My Transactions',
             ),
           ]),
         ),

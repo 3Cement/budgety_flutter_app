@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class TransactionPage extends StatelessWidget {
+  final String title;
+
+  TransactionPage(this.title);
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -13,16 +17,23 @@ class TransactionPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Transaction details'),
+          title: Text(title),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text('About transaction'),
-            RaisedButton(
-              color: Theme.of(context).accentColor,
-              child: Text('DELETE'),
-              onPressed: () => Navigator.pop(context, true),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              child: Text(title),
+            ),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              child: RaisedButton(
+                color: Theme.of(context).accentColor,
+                child: Text('DELETE'),
+                onPressed: () => Navigator.pop(context, true),
+              ),
             )
           ],
         ),

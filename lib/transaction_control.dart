@@ -10,7 +10,7 @@ class TransactionControl extends StatelessWidget {
     return RaisedButton(
       color: Theme.of(context).primaryColor,
       onPressed: () {
-        addTransaction('Your transaction');
+        addTransaction({'title': 'Transakcja!'});
       },
       child: Text('Add Transaction'),
     );

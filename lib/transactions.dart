@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './pages/transaction.dart';
 
 class Transactions extends StatelessWidget {
-  final List<String> transactions;
+  final List<Map<String, String>> transactions;
   final Function deleteTransaction;
 
   Transactions(this.transactions, {this.deleteTransaction}) {
@@ -15,18 +15,15 @@ class Transactions extends StatelessWidget {
       child: Column(
         children: <Widget>[
           // Image.asset('assets/food.jpg'),
-          Text(transactions[index]),
+          Text(transactions[index]['title']),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
                 child: Text('Details'),
-                onPressed: () => Navigator.push<bool>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => TransactionPage(),
-                      ),
-                    ).then((bool value) {
+                onPressed: () => Navigator.pushNamed<bool>(
+                            context, '/transaction/' + index.toString())
+                        .then((bool value) {
                       if (value) {
                         deleteTransaction(index);
                       }

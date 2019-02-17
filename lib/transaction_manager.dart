@@ -3,49 +3,12 @@ import 'package:flutter/material.dart';
 import './transactions.dart';
 import './transaction_control.dart';
 
-class TransactionManager extends StatefulWidget {
-  final String startingTransaction;
+class TransactionManager extends StatelessWidget {	  
+  final List<Map<String, String>> transactions;
+  final Function addTransaction;
+  final Function deleteTransaction;
 
-  TransactionManager({this.startingTransaction}) {
-    print('[TransactionManager Widget] Constructor');
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    print('[TransactionManager Widget] createState()');
-    return _TransactionManagerState();
-  }
-}
-
-class _TransactionManagerState extends State<TransactionManager> {
-  List<String> _transactions = [];
-
-  @override
-  void initState() {
-    print('[TransactionManager State] initState()');
-    if (widget.startingTransaction != null) {
-      _transactions.add(widget.startingTransaction);
-    }
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(TransactionManager oldWidget) {
-    print('[TransactionManager State] didUpdateWidget()');
-    super.didUpdateWidget(oldWidget);
-  }
-
-  void _addTransaction(String transaction) {
-    setState(() {
-      _transactions.add(transaction);
-    });
-  }
-
-  void _deleteTransaction(int index) {
-    setState(() {
-      _transactions.removeAt(index);
-    });
-  }
+  TransactionManager(this.transactions, this.addTransaction, this.deleteTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +17,9 @@ class _TransactionManagerState extends State<TransactionManager> {
       children: [
         Container(
           margin: EdgeInsets.all(10.0),
-          child: TransactionControl(_addTransaction),
+          child: TransactionControl(addTransaction),
         ),
-        Expanded(child: Transactions(_transactions, deleteTransaction: _deleteTransaction))
+        Expanded(child: Transactions(transactions, deleteTransaction: deleteTransaction))
       ],
     );
   }

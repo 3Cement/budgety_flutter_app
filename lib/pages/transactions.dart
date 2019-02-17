@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../transaction_manager.dart';
-import './transactions_admin.dart';
 
 class TransactionsPage extends StatelessWidget {
+  final List<Map<String, String>> transactions;
+  final Function addTransaction;
+  final Function deleteTransaction;
+
+  TransactionsPage(
+      this.transactions, this.addTransaction, this.deleteTransaction);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +23,7 @@ class TransactionsPage extends StatelessWidget {
             ListTile(
               title: Text('Manage Transactions'),
               onTap: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            TransactionsAdminPage()));
+                Navigator.pushReplacementNamed(context, '/admin');
               },
             )
           ],
@@ -30,7 +32,7 @@ class TransactionsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('EasyList'),
       ),
-      body: TransactionManager(),
+      body: TransactionManager(transactions, addTransaction, deleteTransaction),
     );
   }
 }
