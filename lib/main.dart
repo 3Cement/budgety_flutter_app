@@ -45,7 +45,8 @@ class _MyAppState extends State<MyApp> {
           accentColor: Colors.lightGreen),
       // home: AuthPage(),
       routes: {
-        '/': (BuildContext context) => TransactionsPage(_transactions, _addTransaction, _deleteTransaction),
+        '/': (BuildContext context) => TransactionsPage(
+            _transactions, _addTransaction, _deleteTransaction),
         '/admin': (BuildContext context) => TransactionsAdminPage(),
       },
       onGenerateRoute: (RouteSettings settings) {
@@ -56,11 +57,16 @@ class _MyAppState extends State<MyApp> {
         if (pathElements[1] == 'transaction') {
           final int index = int.parse(pathElements[2]);
           return MaterialPageRoute<bool>(
-            builder: (BuildContext context) => TransactionPage(
-                _transactions[index]['title']),
+            builder: (BuildContext context) =>
+                TransactionPage(_transactions[index]['title']),
           );
         }
         return null;
+      },
+      onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute(
+            builder: (BuildContext context) => TransactionsPage(
+                _transactions, _addTransaction, _deleteTransaction));
       },
     );
   }
