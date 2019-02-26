@@ -65,8 +65,9 @@ class _MyAppState extends State<MyApp> {
       },
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(
-            builder: (BuildContext context) => TransactionsPage(
-                _transactions, _addTransaction, _deleteTransaction));
+          builder: (BuildContext context) => TransactionsPage(
+              _transactions, _addTransaction, _deleteTransaction),
+        );
       },
     );
   }
