@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import '../transaction_manager.dart';
 
 class TransactionsPage extends StatelessWidget {
-  final List<Map<String, String>> transactions;
-  final Function addTransaction;
-  final Function deleteTransaction;
+  final List<Map<String, dynamic>> transactions;
 
   TransactionsPage(
-      this.transactions, this.addTransaction, this.deleteTransaction);
+      this.transactions);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class TransactionsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('EasyList'),
       ),
-      body: TransactionManager(transactions, addTransaction, deleteTransaction),
+      body: TransactionManager(transactions),
     );
   }
 }

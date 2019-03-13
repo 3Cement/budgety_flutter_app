@@ -21,12 +21,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Map<String, String>> _transactions = [];
+  List<Map<String, dynamic>> _transactions = [];
 
-  void _addTransaction(Map<String, String> transaction) {
+  void _addTransaction(Map<String, dynamic> transaction) {
     setState(() {
       _transactions.add(transaction);
     });
+    print(_transactions);
   }
 
   void _deleteTransaction(int index) {
@@ -45,9 +46,11 @@ class _MyAppState extends State<MyApp> {
           accentColor: Colors.lightGreen),
       // home: AuthPage(),
       routes: {
-        '/': (BuildContext context) => TransactionsPage(
-            _transactions, _addTransaction, _deleteTransaction),
-        '/admin': (BuildContext context) => TransactionsAdminPage(),
+        '/': (BuildContext context) => AuthPage(),
+        '/transactions': (BuildContext context) =>
+            TransactionsPage(_transactions),
+        '/admin': (BuildContext context) =>
+            TransactionsAdminPage(_addTransaction, _deleteTransaction),
       },
       onGenerateRoute: (RouteSettings settings) {
         final List<String> pathElements = settings.name.split('/');
@@ -65,9 +68,7 @@ class _MyAppState extends State<MyApp> {
       },
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(
-          builder: (BuildContext context) => TransactionsPage(
-              _transactions, _addTransaction, _deleteTransaction),
-        );
+            builder: (BuildContext context) => TransactionsPage(_transactions));
       },
     );
   }

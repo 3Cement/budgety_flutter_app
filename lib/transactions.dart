@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import './pages/transaction.dart';
 
 class Transactions extends StatelessWidget {
-  final List<Map<String, String>> transactions;
-  final Function deleteTransaction;
+  final List<Map<String, dynamic>> transactions;
 
-  Transactions(this.transactions, {this.deleteTransaction}) {
+  Transactions(this.transactions) {
     print('[Transactions Widget] Constructor');
   }
 
@@ -22,12 +21,7 @@ class Transactions extends StatelessWidget {
               FlatButton(
                 child: Text('Details'),
                 onPressed: () => Navigator.pushNamed<bool>(
-                            context, '/transaction/' + index.toString())
-                        .then((bool value) {
-                      if (value) {
-                        deleteTransaction(index);
-                      }
-                    }),
+                    context, '/transaction/' + index.toString()),
               )
             ],
           )

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-import './transactions.dart';
 import './transaction_create.dart';
 import './transaction_list.dart';
 
 class TransactionsAdminPage extends StatelessWidget {
+  final Function addTransaction;
+  final Function deleteTransaction;
+
+  TransactionsAdminPage(this.addTransaction, this.deleteTransaction);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -20,7 +24,7 @@ class TransactionsAdminPage extends StatelessWidget {
               ListTile(
                 title: Text('All Transactions'),
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, '/');
+                  Navigator.pushReplacementNamed(context, '/transactions');
                 },
               )
             ],
@@ -41,7 +45,7 @@ class TransactionsAdminPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            TransactionCreatePage(),
+            TransactionCreatePage(addTransaction),
             TransactionListPage(),
           ],
         ),
