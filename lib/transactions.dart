@@ -14,7 +14,10 @@ class Transactions extends StatelessWidget {
       child: Column(
         children: <Widget>[
           // Image.asset('assets/food.jpg'),
-          Text(transactions[index]['title']),
+          Container(
+            padding: EdgeInsets.only(top: 10.0),
+            child: Text(transactions[index]['title']),
+          ),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
